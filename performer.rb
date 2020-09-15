@@ -1,7 +1,5 @@
-require 'logger'
-require 'json'
-
 require_relative 'fib_worker'
+require_relative 'file_logger'
 
 class Performer
   def initialize
@@ -13,9 +11,7 @@ class Performer
   end
 
   def log(worker_id, job, result)
-    @file = File.open('output.log', 'a')
-    @file.write("\n#{Time.now.to_s}-#{worker_id.to_s}:#{job['klass']}:#{job['data'].to_s}:#{result.to_s}")
-    @file.close
+    FileLogger.log("#{worker_id.to_s}:#{job['klass']}:#{job['data'].to_s}:#{result.to_s}")
   end
 end
 

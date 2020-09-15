@@ -2,6 +2,7 @@ require 'json'
 
 require_relative 'redis_conn'
 require_relative 'performer'
+require_relative 'file_logger'
 
 pipe = Ractor.new do
   loop do
@@ -23,6 +24,6 @@ end
 loop do
   job = RedisConn.conn.blpop(['queue:ractor-example'], 1)
   next if job.nil?
-  p "#{Time.now.to_s}-#{JSON.parse(job[1]).to_s}"
+  FileLogger.log("#{JSON.parse(job[1]).to_s}")
   pipe << JSON.parse(job[1])
 end
