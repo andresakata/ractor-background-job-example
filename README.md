@@ -9,3 +9,5 @@ Here is the procedure to run:
 
 - Run the loop: `ruby loop.rb`.
 - Enqueue some jobs by executing: `ruby enqueuer.rb`.
+
+Check out [this blog](https://medium.com/@andresakata/background-job-processing-using-ractor-ruby-3-41c7956d14a0) post with more information about how Ractor is being used here.
